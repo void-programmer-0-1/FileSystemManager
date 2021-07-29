@@ -11,6 +11,8 @@
 #define JAVA "java"
 #define ASM "asm"
 
+//these are the path for the folders
+
 const std::string C_PATH = "/media/deadpool/VP/C/";
 const std::string CPP_PATH = "/media/deadpool/VP/C++/";
 const std::string PY_PATH = "/media/deadpool/VP/PythonPrograms/";
@@ -20,11 +22,10 @@ const std::string ASM_PATH = "/media/deadpool/VP/asm/";
 const std::string CYTHON_PATH = "/media/deadpool/VP/Cython/";
 const std::string WAV_PATH = "/media/deadpool/VP/wav/";
 
+// namespace fs = std::experimental::filesystem;
 
-
-//namespace fs = std::experimental::filesystem;
-
-std::string ExtractExtension(std::string& filename){
+std::string ExtractExtension(std::string& filename)
+{
     char dot = '.';
     std::string ext;
     size_t index = filename.find(dot);
@@ -36,15 +37,18 @@ std::string ExtractExtension(std::string& filename){
     return ext;
 }
 
-void copyFile(std::string& from,std::string& to){
+void copyFile(std::string& from,std::string& to)
+{
     std::experimental::filesystem::copy_file(from,to);
 }
 
-void ShowCopyPath(const std::string& filename,std::string& from,const std::string& to){
+void ShowCopyPath(const std::string& filename,std::string& from,const std::string& to)
+{
     std::cout << "copying " << filename << " From :: " << from << " to :: " << to << std::endl;
 }
 
-void TraversePath(std::string& path){
+void TraversePath(std::string& path)
+{
     for(const auto & entry : std::experimental::filesystem::directory_iterator(path)){
         
         std::string path_to = entry.path();
@@ -109,10 +113,6 @@ void TraversePath(std::string& path){
 
 int main(int argc,const char* argv[])
 {
-
     std::string path = (std::string)argv[1];
-    TraversePath(path);
-    
-
-
+    TraversePath(path);   
 }
